@@ -91,18 +91,15 @@ Weitere Informationen:
 
 ### Storage
 Zwei Modi:
-1. **Layout‑Modus**
-   - layout.name (lvm, direct, zfs, hybrid)
-   - match
-   - ptable
-   - sizing-policy
-   - password (LUKS)
-   - reset-partition
-   - reset-partition-only
+1. **Layout‑Modus** (strukturiertes Formular)
+   - layout.name: Radio-Group oder Select mit drei Optionen (lvm [Standard], direct, zfs)
+     - Nur eines der drei offiziell unterstützten Layouts kann gewählt werden
+     - Erzeugt: `autoinstall.storage.layout.name: lvm|direct|zfs`
+   - Hinweis: Für komplexere Konfigurationen wechselt der Nutzer in den Action‑Modus
 
-2. **Action‑Modus**
+2. **Action‑Modus** (YAML‑Editor Escape Hatch)
    - Liste von Aktionen (disk, partition, lvm, raid …)
-   - YAML‑Editor empfohlen
+   - YAML‑Editor (MUI Dialog) empfohlen
 
 ### Identity
 - realname
