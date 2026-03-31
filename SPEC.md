@@ -85,7 +85,7 @@ Weitere Informationen:
 ### APT
 - preserve_sources_list (boolean)
 - mirror-selection.primary (list)
-- mirror-selection.fallback (enum)
+- fallback (enum: abort | continue-anyway | offline-install)
 - geoip (boolean)
 - sources (mapping)
 
@@ -130,7 +130,7 @@ Zwei Modi:
 - install (boolean)
 
 ### OEM
-- install (boolean | "auto")
+- install (boolean | "auto", **required**)
 
 ### Snaps
 Liste von Objekten:
@@ -145,7 +145,7 @@ Liste von Objekten:
 - packages (string[])
 
 ### Kernel
-- package oder flavor
+- package **oder** flavor (genau eines, gegenseitig ausschließend)
 
 ### Kernel Crash Dumps
 - enabled (boolean | null)
@@ -160,9 +160,17 @@ Liste von Objekten:
 - shutdown (enum: reboot | poweroff)
 
 ### Reporting
-- type (print | rsyslog | webhook | none)
-- destination (optional)
-- endpoint (optional)
+Map von benannten Handlern (beliebige Schlüsselnamen), jeder Handler:
+- type (string, **required**)
+- weitere Felder abhängig vom Typ (z. B. endpoint für webhook)
+
+Beispiel:
+```yaml
+reporting:
+  my-handler:
+    type: webhook
+    endpoint: https://example.com/hook
+```
 
 ### User-Data
 - YAML‑Editor (cloud-init)
@@ -873,6 +881,7 @@ autoinstall:
 - Pflichtfelder
  - version
  - identity.username
+ - identity.hostname
  - identity.password (wenn keine user-data)
 - Zod‑Schemas pro Abschnitt
 - Fehleranzeige im Formular
