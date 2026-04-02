@@ -23,7 +23,7 @@ export function SectionAccordion({
         aria-controls={`section-${title.toLowerCase().replace(/\s+/g, '-')}-content`}
         id={`section-${title.toLowerCase().replace(/\s+/g, '-')}-header`}
       >
-        <Typography variant="subtitle1" component="h3">
+        <Typography variant="subtitle1" component="span">
           {title}
         </Typography>
       </AccordionSummary>
