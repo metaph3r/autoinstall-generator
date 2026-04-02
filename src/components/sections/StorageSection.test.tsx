@@ -23,13 +23,13 @@ describe('StorageSection', () => {
 
   it('renders action mode switch', () => {
     renderSection()
-    expect(screen.getByTestId('action-mode-switch')).toBeTruthy()
+    expect(screen.getByRole('checkbox', { name: /Use Storage Actions/i })).toBeTruthy()
   })
 
   it('shows Edit Storage Actions YAML button when action mode is enabled', async () => {
     const user = userEvent.setup()
     renderSection()
-    const toggle = screen.getByTestId('action-mode-switch')
+    const toggle = screen.getByRole('checkbox', { name: /Use Storage Actions/i })
     await user.click(toggle)
     expect(screen.getByTestId('edit-storage-actions-button')).toBeTruthy()
   })
@@ -37,7 +37,7 @@ describe('StorageSection', () => {
   it('hides radio group when action mode is enabled', async () => {
     const user = userEvent.setup()
     renderSection()
-    const toggle = screen.getByTestId('action-mode-switch')
+    const toggle = screen.getByRole('checkbox', { name: /Use Storage Actions/i })
     await user.click(toggle)
     expect(screen.queryByRole('radio', { name: 'lvm' })).toBeNull()
   })
@@ -45,7 +45,7 @@ describe('StorageSection', () => {
   it('opens YamlEditorDialog on Edit Storage Actions YAML click', async () => {
     const user = userEvent.setup()
     renderSection()
-    await user.click(screen.getByTestId('action-mode-switch'))
+    await user.click(screen.getByRole('checkbox', { name: /Use Storage Actions/i }))
     await user.click(screen.getByTestId('edit-storage-actions-button'))
     expect(screen.getByText('Storage Actions YAML')).toBeTruthy()
   })

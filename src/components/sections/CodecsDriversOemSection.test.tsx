@@ -16,12 +16,12 @@ function renderSection() {
 describe('CodecsDriversOemSection', () => {
   it('renders codecs install switch', () => {
     renderSection()
-    expect(screen.getByTestId('codecs-install-switch')).toBeTruthy()
+    expect(screen.getByRole('checkbox', { name: /Install Codecs/i })).toBeTruthy()
   })
 
   it('renders drivers install switch', () => {
     renderSection()
-    expect(screen.getByTestId('drivers-install-switch')).toBeTruthy()
+    expect(screen.getByRole('checkbox', { name: /Install Drivers/i })).toBeTruthy()
   })
 
   it('renders OEM select', () => {
@@ -32,7 +32,7 @@ describe('CodecsDriversOemSection', () => {
   it('toggles codecs install switch', async () => {
     const user = userEvent.setup()
     renderSection()
-    const toggle = screen.getByTestId('codecs-install-switch')
+    const toggle = screen.getByRole('checkbox', { name: /Install Codecs/i })
     expect((toggle as HTMLInputElement).checked).toBe(false)
     await user.click(toggle)
     expect((toggle as HTMLInputElement).checked).toBe(true)
@@ -41,7 +41,7 @@ describe('CodecsDriversOemSection', () => {
   it('toggles drivers install switch', async () => {
     const user = userEvent.setup()
     renderSection()
-    const toggle = screen.getByTestId('drivers-install-switch')
+    const toggle = screen.getByRole('checkbox', { name: /Install Drivers/i })
     expect((toggle as HTMLInputElement).checked).toBe(false)
     await user.click(toggle)
     expect((toggle as HTMLInputElement).checked).toBe(true)

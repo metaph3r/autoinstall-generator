@@ -55,7 +55,6 @@ export function StorageSection(): JSX.Element {
         control={
           <Switch
             {...register('actionMode')}
-            inputProps={{ 'data-testid': 'action-mode-switch' }}
           />
         }
         label="Use Storage Actions instead of layout"

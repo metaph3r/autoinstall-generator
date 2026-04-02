@@ -82,14 +82,7 @@ export function CodecsDriversOemSection(): JSX.Element {
         Codecs
       </Typography>
       <FormControlLabel
-        control={
-          <Switch
-            {...register('codecsInstall')}
-            inputProps={
-              { 'data-testid': 'codecs-install-switch' } as React.InputHTMLAttributes<HTMLInputElement>
-            }
-          />
-        }
+        control={<Switch {...register('codecsInstall')} data-testid="codecs-install-switch" />}
         label="Install Codecs"
       />
 
@@ -97,14 +90,7 @@ export function CodecsDriversOemSection(): JSX.Element {
         Drivers
       </Typography>
       <FormControlLabel
-        control={
-          <Switch
-            {...register('driversInstall')}
-            inputProps={
-              { 'data-testid': 'drivers-install-switch' } as React.InputHTMLAttributes<HTMLInputElement>
-            }
-          />
-        }
+        control={<Switch {...register('driversInstall')} data-testid="drivers-install-switch" />}
         label="Install Drivers"
       />
 
@@ -117,7 +103,7 @@ export function CodecsDriversOemSection(): JSX.Element {
             <Select
               labelId="oem-label"
               label="OEM"
-              inputProps={{ 'data-testid': 'oem-select' }}
+              data-testid="oem-select"
               {...field}
             >
               <MenuItem value="">

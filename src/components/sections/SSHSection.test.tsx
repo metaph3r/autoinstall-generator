@@ -16,12 +16,12 @@ function renderSection() {
 describe('SSHSection', () => {
   it('renders install server switch', () => {
     renderSection()
-    expect(screen.getByTestId('install-server-switch')).toBeTruthy()
+    expect(screen.getByRole('checkbox', { name: /Install SSH Server/i })).toBeTruthy()
   })
 
   it('renders allow password authentication switch', () => {
     renderSection()
-    expect(screen.getByTestId('allow-pw-switch')).toBeTruthy()
+    expect(screen.getByRole('checkbox', { name: /Allow Password Authentication/i })).toBeTruthy()
   })
 
   it('renders Add Key button for authorized keys', () => {
@@ -48,7 +48,7 @@ describe('SSHSection', () => {
   it('toggles install server switch', async () => {
     const user = userEvent.setup()
     renderSection()
-    const toggle = screen.getByTestId('install-server-switch')
+    const toggle = screen.getByRole('checkbox', { name: /Install SSH Server/i })
     expect((toggle as HTMLInputElement).checked).toBe(false)
     await user.click(toggle)
     expect((toggle as HTMLInputElement).checked).toBe(true)

@@ -54,7 +54,6 @@ export function SSHSection(): JSX.Element {
         control={
           <Switch
             {...register('installServer')}
-            inputProps={{ 'data-testid': 'install-server-switch' }}
           />
         }
         label="Install SSH Server"
@@ -95,7 +94,6 @@ export function SSHSection(): JSX.Element {
         control={
           <Switch
             {...register('allowPw')}
-            inputProps={{ 'data-testid': 'allow-pw-switch' }}
           />
         }
         label="Allow Password Authentication"
