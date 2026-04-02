@@ -1,7 +1,12 @@
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import { FormNavigation } from './FormNavigation'
+import { FormContent } from './FormContent'
 
 export function FormEditor(): JSX.Element {
+  const [activeTab, setActiveTab] = useState(0)
+
   return (
     <Box
       sx={{
@@ -12,9 +17,12 @@ export function FormEditor(): JSX.Element {
     >
       <Box
         data-testid="form-sections"
-        sx={{ flex: { md: '0 0 60%' }, p: 2 }}
+        sx={{ flex: { md: '0 0 60%' }, display: 'flex', flexDirection: 'column' }}
       >
-        <Typography color="text.secondary">Form sections</Typography>
+        <FormNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+        <Box sx={{ overflowY: 'auto', flex: 1 }}>
+          <FormContent activeTab={activeTab} />
+        </Box>
       </Box>
       <Box
         data-testid="yaml-preview"
