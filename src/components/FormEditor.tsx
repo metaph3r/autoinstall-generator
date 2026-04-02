@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import { FormNavigation } from './FormNavigation'
 import { FormContent } from './FormContent'
+import { YamlPreviewPanel } from './YamlPreviewPanel'
 
 export function FormEditor(): JSX.Element {
   const [activeTab, setActiveTab] = useState(0)
@@ -28,7 +28,7 @@ export function FormEditor(): JSX.Element {
         data-testid="yaml-preview"
         sx={{ flex: { md: '0 0 40%' }, p: 2 }}
       >
-        <Typography color="text.secondary">YAML preview</Typography>
+        <YamlPreviewPanel />
       </Box>
     </Box>
   )
