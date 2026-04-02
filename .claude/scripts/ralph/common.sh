@@ -72,9 +72,12 @@ check_dependencies() {
 }
 
 # Run Claude in headless mode
+# Usage: run_claude_headless <prompt> <output_file>
+# The caller must create and manage output_file (e.g. via mktemp).
+# Stdout is the live Claude output (via tee); the file path is NOT echoed.
 run_claude_headless() {
     local prompt="$1"
-    local output_file=$(mktemp)
+    local output_file="$2"
 
     # Run Claude in print mode with output captured
     # --print outputs to stdout instead of interactive mode
@@ -83,9 +86,6 @@ run_claude_headless() {
         --permission-mode bypassPermissions \
         --output-format text \
         "$prompt" 2>&1 | tee "$output_file"
-
-    # Return the output file path for checking promises
-    echo "$output_file"
 }
 
 # Check if output contains a promise
@@ -147,7 +147,9 @@ run_ralph_loop() {
         log_iteration $iteration $max_iterations
 
         # Run Claude and capture output
-        local output_file=$(run_claude_headless "$prompt_template")
+        local output_file
+        output_file=$(mktemp)
+        run_claude_headless "$prompt_template" "$output_file"
 
         # Check for success
         if check_promise "$output_file" "$success_promise"; then
