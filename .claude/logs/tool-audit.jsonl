@@ -15001,3 +15001,19 @@
   "user": "sgloeckner",
   "seq": "2026-04-02T10:25:12.732219733-21130-8730"
 }
+{
+  "timestamp": "2026-04-02T10:25:13.460482267",
+  "event": "post_tool_use",
+  "tool": "Bash",
+  "response_type": "object",
+  "input_keys": [
+    "command",
+    "description"
+  ],
+  "input_size": 408,
+  "response_size": 476,
+  "include_payloads": false,
+  "session_id": "unknown",
+  "user": "sgloeckner",
+  "seq": "2026-04-02T10:25:13.460482267-21197-26834"
+}
