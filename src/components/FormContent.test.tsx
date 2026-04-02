@@ -36,7 +36,7 @@ describe('FormContent', () => {
 
   it('shows Configuration tab sections when activeTab=5', () => {
     renderFormContent(5)
-    expect(screen.getByText('Timezone')).toBeTruthy()
+    expect(screen.getByTestId('timezone-field')).toBeTruthy()
   })
 
   it('switches visible panel when activeTab changes', () => {

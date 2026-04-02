@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import { SectionAccordion } from './SectionAccordion'
 import { SystemSection } from './sections/SystemSection'
 import { NetworkSection } from './sections/NetworkSection'
@@ -8,7 +7,18 @@ import { IdentitySection } from './sections/IdentitySection'
 import { ActiveDirectorySection } from './sections/ActiveDirectorySection'
 import { UbuntuProSection } from './sections/UbuntuProSection'
 import { SSHSection } from './sections/SSHSection'
-import type { TabGroup } from './FormNavigation'
+import { LocaleKeyboardSection } from './sections/LocaleKeyboardSection'
+import { TimezoneUpdatesShutdownSection } from './sections/TimezoneUpdatesShutdownSection'
+import { ReportingSection } from './sections/ReportingSection'
+import { UserDataSection } from './sections/UserDataSection'
+import { DebconfZdevsSection } from './sections/DebconfZdevsSection'
+import { SourceSection } from './sections/SourceSection'
+import { AptSection } from './sections/AptSection'
+import { CodecsDriversOemSection } from './sections/CodecsDriversOemSection'
+import { SnapsSection } from './sections/SnapsSection'
+import { PackagesSection } from './sections/PackagesSection'
+import { KernelSection } from './sections/KernelSection'
+import { KernelCrashDumpsSection } from './sections/KernelCrashDumpsSection'
 
 interface TabPanelProps {
   index: number
@@ -27,12 +37,6 @@ function TabPanel({ index, activeTab, children }: TabPanelProps): JSX.Element {
       {activeTab === index && <Box sx={{ pt: 2, px: 1 }}>{children}</Box>}
     </div>
   )
-}
-
-// Placeholder sections for tabs not yet implemented
-const PLACEHOLDER_SECTIONS: Partial<Record<TabGroup, string[]>> = {
-  Software: ['Source', 'APT', 'Codecs', 'Drivers', 'OEM', 'Snaps', 'Packages', 'Kernel', 'Kernel Crash Dumps'],
-  Configuration: ['Locale', 'Keyboard', 'Timezone', 'Updates', 'Shutdown', 'Reporting', 'User Data', 'Debconf Selections', 'Z Devices'],
 }
 
 interface FormContentProps {
@@ -79,21 +83,49 @@ export function FormContent({ activeTab }: FormContentProps): JSX.Element {
         </SectionAccordion>
       </TabPanel>
 
-      {/* Tabs 4-5: Placeholder sections */}
-      {([
-        { group: 'Software' as TabGroup, index: 4 },
-        { group: 'Configuration' as TabGroup, index: 5 },
-      ] as const).map(({ group, index }) => (
-        <TabPanel key={group} index={index} activeTab={activeTab}>
-          {(PLACEHOLDER_SECTIONS[group] ?? []).map((section) => (
-            <SectionAccordion key={section} title={section}>
-              <Typography variant="body2" color="text.secondary">
-                {section} fields coming soon
-              </Typography>
-            </SectionAccordion>
-          ))}
-        </TabPanel>
-      ))}
+      {/* Tab 4: Software */}
+      <TabPanel index={4} activeTab={activeTab}>
+        <SectionAccordion title="Source" defaultExpanded>
+          <SourceSection />
+        </SectionAccordion>
+        <SectionAccordion title="APT">
+          <AptSection />
+        </SectionAccordion>
+        <SectionAccordion title="Codecs, Drivers & OEM">
+          <CodecsDriversOemSection />
+        </SectionAccordion>
+        <SectionAccordion title="Snaps">
+          <SnapsSection />
+        </SectionAccordion>
+        <SectionAccordion title="Packages">
+          <PackagesSection />
+        </SectionAccordion>
+        <SectionAccordion title="Kernel">
+          <KernelSection />
+        </SectionAccordion>
+        <SectionAccordion title="Kernel Crash Dumps">
+          <KernelCrashDumpsSection />
+        </SectionAccordion>
+      </TabPanel>
+
+      {/* Tab 5: Configuration */}
+      <TabPanel index={5} activeTab={activeTab}>
+        <SectionAccordion title="Locale & Keyboard" defaultExpanded>
+          <LocaleKeyboardSection />
+        </SectionAccordion>
+        <SectionAccordion title="Timezone, Updates & Shutdown">
+          <TimezoneUpdatesShutdownSection />
+        </SectionAccordion>
+        <SectionAccordion title="Reporting">
+          <ReportingSection />
+        </SectionAccordion>
+        <SectionAccordion title="User Data">
+          <UserDataSection />
+        </SectionAccordion>
+        <SectionAccordion title="Debconf & Z Devices">
+          <DebconfZdevsSection />
+        </SectionAccordion>
+      </TabPanel>
     </Box>
   )
 }
