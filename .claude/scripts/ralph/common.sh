@@ -78,9 +78,9 @@ run_claude_headless() {
 
     # Run Claude in print mode with output captured
     # --print outputs to stdout instead of interactive mode
-    # --permission-mode delegate for safer autonomous operation
+    # --permission-mode bypassPermissions for autonomous headless operation
     $CLAUDE_CMD --print \
-        --permission-mode delegate \
+        --permission-mode bypassPermissions \
         --output-format text \
         "$prompt" 2>&1 | tee "$output_file"
 
