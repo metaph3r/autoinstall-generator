@@ -11,10 +11,10 @@ and cross-reference analysis.
 | Category | Count |
 |----------|-------|
 | Application specifications | 1 |
-| ADRs | 0 |
+| ADRs | 5 |
 | Research documents | 0 |
 | Infrastructure documents | 0 |
-| **Total** | **1 document** |
+| **Total** | **6 documents** |
 
 ---
 
@@ -25,6 +25,16 @@ and cross-reference analysis.
 | # | File | Status | Date | Key Topics | Arc42 Sections | Cross-References |
 |---|------|--------|------|------------|----------------|------------------|
 | 1 | `SPEC.md` | Draft (implied) | — | React/TS web app, form-based Ubuntu autoinstall.yaml generator, MUI 6, Zod, YAML preview | §01, §02, §03, §04, §05, §06, §08, §09, §10 | [Canonical Autoinstall reference](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html), [Autoinstall schema](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-schema.html), [Autoinstall validation](https://canonical-subiquity.readthedocs-hosted.com/en/latest/howto/autoinstall-validation.html) |
+
+### Architecture Decision Records (`SourceDocuments/adr/`)
+
+| # | File | Title | Status | Date | Arc42 Sections |
+|---|------|-------|--------|------|----------------|
+| 1 | `001-hybrid-ui-model.md` | Hybrid UI Model: Structured Forms with YAML Editor Escape Hatches | Accepted | 2026-03-31 | §01, §04, §05, §06, §08 |
+| 2 | `002-build-tooling-and-deployment.md` | Build Tooling: Vite; Deployment: GitHub Pages with GitHub Actions CI/CD | Accepted | 2026-03-31 | §02, §07, §08 |
+| 3 | `003-syntax-highlighting-prismjs.md` | Syntax Highlighting: PrismJS via react-syntax-highlighter | Accepted | 2026-03-31 | §04, §08, §09 |
+| 4 | `004-form-navigation-grouped-mui-tabs.md` | Form Navigation: Grouped MUI Tabs | Accepted | 2026-03-31 | §04, §05, §09 |
+| 5 | `005-technology-stack-rationale.md` | Technology Stack Rationale: React 18+, MUI 6, Context+Reducer, React Hook Form, Zod, yaml | Accepted | 2026-03-31 | §02, §04, §08, §09 |
 
 ---
 

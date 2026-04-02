@@ -25,6 +25,10 @@ graph TD
     FormEditor --> YamlEditorDialog
 ```
 
+> ℹ️ Note: In the Level 1 diagram, `FormEditor --> YamlEditorDialog` represents a transitive
+> containment relationship. `YamlEditorDialog` is opened by specific section form components
+> (`NetworkSection`, `StorageActionSection`); see Level 2 for the precise ownership.
+
 ### Building Blocks (Level 1)
 
 | Building Block | Responsibility | Key Interfaces |
@@ -64,7 +68,7 @@ graph TD
     FormEditor --> YamlPreviewPanel
     FormContent --> SectionAccordion
     SectionAccordion --> SectionForm
-    SectionAccordion --> YamlEditorDialog
+    SectionForm --> YamlEditorDialog
     YamlPreviewPanel --> SyntaxHighlighter
 ```
 
@@ -94,7 +98,7 @@ The 6 tab groups and their constituent sections, as decided in ADR-004:
 | **Network** | `network` | `YamlEditorDialog` button (Netplan YAML escape hatch) |
 | | `proxy` | TextField (URI format) |
 | **Storage** | `storage` — Layout mode | Radio group: `lvm` (default) / `direct` / `zfs` |
-| | `storage` — Action mode | `YamlEditorDialog` button (toggle from Layout mode) |
+| | `storage` — Action mode | `YamlEditorDialog` button (toggle from Layout mode via a Switch or radio group labelled "Use action list instead of layout"; implementation detail to be decided during component development) |
 | **Identity & Auth** | `identity` | TextFields: realname, username, hostname, password (required) |
 | | `active-directory` | TextFields: admin-name, domain-name |
 | | `ubuntu-pro` | TextField: token (24–30 chars, pattern validated) |

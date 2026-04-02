@@ -124,6 +124,19 @@
 
 ---
 
+### TD-4: No Error Boundary Defined
+
+| Attribute | Value |
+|-----------|-------|
+| **Item** | No React error boundary (`componentDidCatch` / `ErrorBoundary`) is defined in v1 |
+| **Why it exists** | The application has no async network calls and no server-side operations, reducing the likelihood of unhandled runtime errors. An error boundary was not specified in any source document. |
+| **Cost of keeping it** | Unexpected runtime errors (e.g., from third-party library bugs, edge-case state mutations) will propagate to a blank white screen with a console error, rather than a user-friendly fallback |
+| **Path to resolution** | Add a React `ErrorBoundary` class component wrapping `<App>` as a v1 safety net. Display a simple fallback UI: "Something went wrong. Please reload the page." This is a one-time implementation with minimal ongoing maintenance cost. |
+
+(Source: §08 Error Handling — inferred pattern; not specified in source documents)
+
+---
+
 ## Cross-References
 
 - Scope (v1 exclusions to prevent scope creep): [§01 Introduction and Goals — Scope](01-introduction-and-goals.md#scope-v1)

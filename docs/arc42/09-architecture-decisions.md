@@ -116,7 +116,7 @@ replacement decisions need an explicit baseline.
 
 | Technology | Key Rationale |
 |-----------|--------------|
-| React 18+ | Largest form-heavy SPA ecosystem; MUI 6 requires it; `useTransition` for live preview debouncing |
+| React 18+ | Largest form-heavy SPA ecosystem; MUI 6 compatible; `useDeferredValue` for deferring YAML preview re-renders on value change |
 | MUI 6 | 1:1 match of spec's component inventory; built-in WAI-ARIA satisfies WCAG 2.1 AA |
 | Context + Reducer | Single root config object is the canonical reducer use case; no external dependency needed |
 | React Hook Form | Uncontrolled components — no full-tree re-render on each keystroke across 26 sections |

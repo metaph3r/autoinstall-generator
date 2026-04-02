@@ -136,6 +136,7 @@ an `id` (string) and `enabled` (boolean) field.
 
 | Term | Definition |
 |------|-----------|
+| LCP | Largest Contentful Paint — a Core Web Vitals metric that measures the render time of the largest image or text block visible in the viewport. A "Good" LCP score is < 2.5 seconds. This application targets < 2 s on a 4G connection. |
 | SPA | Single-Page Application — a web application that loads a single HTML document and dynamically updates the view via JavaScript, without full-page reloads |
 | WAI-ARIA | Web Accessibility Initiative – Accessible Rich Internet Applications. A W3C specification for making web applications accessible to users of assistive technologies |
 | WCAG | Web Content Accessibility Guidelines — the W3C standard for web accessibility. This application targets WCAG 2.1 Level AA (Q-7, resolved) |

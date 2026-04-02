@@ -21,7 +21,8 @@ or copied to the clipboard. (Source: `SPEC.md` §Ziel der Anwendung)
 The following are **in scope** for v1:
 
 - Structured form UI covering approximately 24 Autoinstall sections (all sections where the
-  field structure is known and bounded). (ADR-001)
+  field structure is known and bounded); 2 additional sections use YAML editor escape hatches
+  (Network, Storage Action mode) — 26 sections total. (ADR-001)
 - YAML editor escape hatches (embedded in MUI Dialog) for the two structurally unbounded sections:
   **Network** (Netplan YAML) and **Storage Action mode**. (ADR-001)
 - User-Data section scoped to the cloud-init `users` module (structured form; fields: `name`,
@@ -57,12 +58,12 @@ The top quality goals for this application, in priority order:
 | Priority | Quality Attribute | Goal |
 |----------|-------------------|------|
 | 1 | **Correctness** | Generated `autoinstall.yaml` must be valid against the Canonical Autoinstall JSON Schema. Required fields (`version`, `identity.username`, `identity.hostname`, `identity.password`) must be validated before export. |
-| 2 | **Performance** | Live YAML preview updates within 50 ms of any form input change. Initial page load LCP < 2 s on 4G. Bundle size < 500 KB gzipped. |
+| 2 | **Performance** | Live YAML preview updates within 50 ms of any form input change. Initial page load (Largest Contentful Paint / LCP) < 2 s on 4G. Bundle size < 500 KB gzipped. |
 | 3 | **Usability** | Expert users (sysadmins) can navigate directly to any of the 26 form sections via grouped Tab navigation (6 groups) without traversing irrelevant sections. |
-| 4 | **Accessibility** | WCAG 2.1 Level AA compliance. Automated axe-core gate in CI. MUI 6 WAI-ARIA as the baseline. |
+| 4 | **Accessibility** | Web Content Accessibility Guidelines (WCAG) 2.1 Level AA compliance. Automated axe-core gate in CI. MUI 6 Web Accessibility Initiative – Accessible Rich Internet Applications (WAI-ARIA) as the baseline. |
 | 5 | **Maintainability** | The application's TypeScript data model and Zod schemas must be updatable when Canonical publishes Autoinstall schema changes; no hardcoded schema version coupling beyond the `version: 1` field. |
 
-See [§10 Quality Requirements](10-quality-requirements.md) for quantitative SLOs and quality
+See [§10 Quality Requirements](10-quality-requirements.md) for quantitative Service Level Objectives (SLOs) and quality
 scenarios.
 
 ---

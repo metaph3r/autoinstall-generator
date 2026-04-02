@@ -12,15 +12,15 @@ chosen as a coherent, mutually-reinforcing set:
 
 | Layer | Technology | Rationale |
 |-------|-----------|----------|
-| Framework | React 18+ | Form-heavy SPA ecosystem; concurrent rendering for live preview (`useTransition`); required for MUI 6. (ADR-005) |
+| Framework | React 18+ | Form-heavy SPA ecosystem; chosen for concurrent rendering (`useTransition`, `useDeferredValue`) and MUI 6 compatibility (MUI 6 supports React 17, 18, and 19). (ADR-005) |
 | UI components | MUI 6 | 1:1 coverage of all spec-required components; built-in WAI-ARIA for WCAG 2.1 AA. (ADR-005) |
 | Language | TypeScript | Type-safe `AutoinstallConfig` model; Zod schemas generate types at compile time. (SPEC.md, §Technische Basis) |
 | State management | React Context + Reducer | Single root `AutoinstallConfig` object; well-defined action types; no external dependency. (ADR-005) |
 | Form handling | React Hook Form | Uncontrolled components — no full-tree re-render per keystroke across 26 form sections. (ADR-005) |
 | Validation | Zod | TypeScript-first; single source of truth for types and validation rules; native React Hook Form integration. (ADR-005) |
 | YAML serialization | `yaml` npm package | Full YAML 1.2 compliance; required for Netplan and cloud-init content. (ADR-005) |
-| Syntax highlighting | `react-syntax-highlighter` (PrismJS) | React-idiomatic; YAML grammar only; ~13 KB gzipped. (ADR-003) |
-| Build tool | Vite | Replaces deprecated CRA; native ESM, fast HMR, Rollup tree-shaking. (ADR-002) |
+| Syntax highlighting | `react-syntax-highlighter` (PrismJS) | React-idiomatic; YAML grammar only; ~13 KB gzipped (estimated; verify with `vite build --report`). (ADR-003) |
+| Build tool | Vite | Replaces deprecated CRA; native ECMAScript Modules (ESM), fast Hot Module Replacement (HMR), Rollup tree-shaking. (ADR-002) |
 | Hosting | GitHub Pages (static) | Free for public repos; zero external SaaS dependency; no backend required. (ADR-002) |
 | CI/CD | GitHub Actions | lint → type-check → Vitest → `vite build` → deploy. (ADR-002) |
 
@@ -58,8 +58,8 @@ The 26 Autoinstall form sections are organized into **6 logical Tab groups** usi
 Navigation between groups is non-sequential — users can jump directly to any section.
 
 This navigation design is optimized for the target audience: expert sysadmins and DevOps
-engineers who know which sections they need to configure and do not want to step linearly
-through 26 sections. (ADR-004)
+engineers (inferred from application purpose) who know which sections they need to configure
+and do not want to step linearly through 26 sections. (ADR-004)
 
 | Tab Group | Sections | Theme |
 |-----------|---------|-------|
@@ -112,8 +112,9 @@ State change → Reducer → New state → yaml.stringify() → SyntaxHighlighte
 
 Target latency for this path: < 50 ms. (Q-10, resolved)
 
-React 18's `useDeferredValue` or `useTransition` can be applied to the YAML re-render if
-profiling reveals input lag on low-end devices.
+React 18's `useDeferredValue` can be applied to defer the YAML re-render if profiling reveals
+input lag on low-end devices. `useDeferredValue` is the appropriate hook here because the YAML
+string is a derived value from the config state; `useTransition` is for action-based transitions.
 
 ### Validation Strategy
 

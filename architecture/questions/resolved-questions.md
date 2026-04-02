@@ -44,7 +44,7 @@
 - **ADR candidate:** Yes — ADR-001: "Hybrid UI model: structured forms with YAML editor escape hatches"
 - **Impact on arc42:**
   - §04: UX strategy is "form-first with escape hatches"; document this as an intentional design principle
-  - §05: `YamlEditorDialog` component must appear in the building block view; 3 sections use it (Network, Storage Action, User-Data)
+  - §05: `YamlEditorDialog` component must appear in the building block view; **2 sections use it** (Network, Storage Action mode); User-Data uses a structured form scoped to the cloud-init `users` module
   - §06: Escape-hatch interaction flow needs a runtime view scenario
   - §08: State management crosscutting concept must address merging raw YAML strings back into `AutoinstallConfig` state
 

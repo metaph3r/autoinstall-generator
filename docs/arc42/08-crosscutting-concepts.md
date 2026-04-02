@@ -59,6 +59,8 @@ Each section form component registers its fields with React Hook Form using `reg
 global reducer on change (using `watch()` with a debounce or `onChange` mode).
 
 ```typescript
+import { zodResolver } from '@hookform/resolvers/zod';
+
 // Per-section pattern (example: IdentityForm)
 const schema = z.object({
   username: z.string().min(1, 'Required'),
@@ -169,7 +171,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 The import path (`/dist/esm/styles/prism`) is the deep ESM import required for tree-shaking
 to avoid bundling the Highlight.js backend alongside PrismJS. (ADR-003)
 
-**Bundle contribution:** PrismJS YAML grammar (~8 KB gzipped) + one theme (~5 KB) = ~13 KB total.
+**Bundle contribution:** PrismJS YAML grammar (~8 KB gzipped) + one theme (~5 KB) = ~13 KB total (estimated; verify with `vite build --report` after initial implementation).
 
 (Source: ADR-003; SPEC.md §YAML-Preview, §Technische Basis)
 
@@ -216,7 +218,7 @@ an axe-core test. Zero critical violations are required before a merge to `main`
 
 ## Development Experience
 
-**Pattern:** Vite dev server with HMR; Vitest as test runner; single `vite.config.ts`.
+**Pattern:** Vite dev server with Hot Module Replacement (HMR); Vitest as test runner; single `vite.config.ts`.
 
 - **Local development:** `npm run dev` starts the Vite dev server at `localhost:5173` with Hot
   Module Replacement (HMR). React component changes are reflected in the browser within

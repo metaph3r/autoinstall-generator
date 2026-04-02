@@ -14,7 +14,7 @@ scope of the v1 project.
 
 | Constraint | Rationale / Source |
 |------------|-------------------|
-| **Frontend framework: React 18+** | Specified in `SPEC.md` §Technische Basis. Required for MUI 6. |
+| **Frontend framework: React 18+** | Specified in `SPEC.md` §Technische Basis. MUI 6 is compatible with React 17, 18, and 19; React 18 is chosen specifically for concurrent rendering features (`useTransition`, `useDeferredValue`). See ADR-005. |
 | **Language: TypeScript** | Specified in `SPEC.md` §Technische Basis. Type-safe model for `AutoinstallConfig`. |
 | **UI library: MUI 6** | Specified in `SPEC.md` §Technische Basis. Provides all required components (Tabs, Accordion, Dialog, TextField, Select, Switch, Checkbox, Table, AppBar). See ADR-005. |
 | **State management: React Context + Reducer** | Specified in `SPEC.md` §Technische Basis. No external state library. See ADR-005. |
@@ -36,12 +36,12 @@ scope of the v1 project.
 
 **Explicitly excluded:** Internet Explorer 11 and all legacy browsers.
 
-**Rationale:** The target audience (Ubuntu sysadmins, DevOps engineers) uses modern browsers.
+**Rationale:** The target audience (Ubuntu sysadmins, DevOps engineers — inferred from application purpose) uses modern browsers.
 The Clipboard API (`navigator.clipboard.writeText`) and all other browser APIs used by this
 application are available in all evergreen browsers without polyfills. React 18+, MUI 6, and
 Vite all target this same browser matrix. (Q-6, resolved)
 
-**Build target:** Vite's default esbuild target (ES2015+), which aligns with this browser matrix.
+**Build target:** Vite's default production target (modern evergreen browsers; Chrome 87+, Firefox 78+, Safari 14+, Edge 88+ for Vite 6; `baseline-widely-available` for Vite 8+), which aligns with the evergreen browser support matrix. Production bundling uses Rollup (Vite 5/6) or Rolldown (Vite 7+); esbuild is used for development-mode transpilation only. (ADR-002)
 
 ---
 

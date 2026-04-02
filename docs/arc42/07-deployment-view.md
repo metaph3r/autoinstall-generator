@@ -42,7 +42,7 @@ entirely in the user's browser. (ADR-002)
 
 | Environment | Infrastructure | URL | Purpose |
 |------------|---------------|-----|---------|
-| **Development** | Vite dev server (`localhost:5173`) | `http://localhost:5173` | Local development with HMR. Clipboard API is available on localhost (treated as secure context by evergreen browsers). |
+| **Development** | Vite dev server (`localhost:5173`) | `http://localhost:5173` | Local development with Hot Module Replacement (HMR). Clipboard API is available on localhost (treated as secure context by evergreen browsers). |
 | **Production** | GitHub Pages CDN | `https://<username>.github.io/<repo>/` | Public deployment. HTTPS enforced. Clipboard API available. |
 
 > 📝 TODO: The GitHub Pages URL (organization name and repository name) has not been specified
@@ -97,7 +97,7 @@ in the source code at build time, not fetched at runtime. (ADR-002)
 | `dist/assets/*.js` | Bundled JavaScript (React, MUI, React Hook Form, Zod, yaml, react-syntax-highlighter, app code) | < 500 KB gzipped total (Q-10) |
 | `dist/assets/*.css` | MUI styles (tree-shaken) | Included in JS bundle via CSS-in-JS; no separate CSS file |
 
-**Tree-shaking:** Vite uses Rollup for production builds. MUI 6 supports tree-shaking via
+**Tree-shaking:** Vite uses Rollup for production builds (Vite 5/6) / Rolldown (Vite 7+). MUI 6 supports tree-shaking via
 named imports; only the components used in the application are included in the bundle.
 `react-syntax-highlighter` is imported via deep ESM paths to avoid bundling both PrismJS
 and Highlight.js backends. (ADR-003)
