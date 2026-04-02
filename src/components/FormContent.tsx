@@ -8,10 +8,13 @@ import { ActiveDirectorySection } from './sections/ActiveDirectorySection'
 import { UbuntuProSection } from './sections/UbuntuProSection'
 import { SSHSection } from './sections/SSHSection'
 import { LocaleKeyboardSection } from './sections/LocaleKeyboardSection'
-import { TimezoneUpdatesShutdownSection } from './sections/TimezoneUpdatesShutdownSection'
-import { ReportingSection } from './sections/ReportingSection'
-import { UserDataSection } from './sections/UserDataSection'
-import { DebconfZdevsSection } from './sections/DebconfZdevsSection'
+import { TimezoneForm } from './TimezoneForm'
+import { UpdatesForm } from './UpdatesForm'
+import { ShutdownForm } from './ShutdownForm'
+import { ReportingForm } from './ReportingForm'
+import { UserDataForm } from './UserDataForm'
+import { DebconfSelectionsForm } from './DebconfSelectionsForm'
+import { ZDevsForm } from './ZDevsForm'
 import { SourceSection } from './sections/SourceSection'
 import { AptSection } from './sections/AptSection'
 import { CodecsDriversOemSection } from './sections/CodecsDriversOemSection'
@@ -113,17 +116,26 @@ export function FormContent({ activeTab }: FormContentProps): JSX.Element {
         <SectionAccordion title="Locale & Keyboard" defaultExpanded>
           <LocaleKeyboardSection />
         </SectionAccordion>
-        <SectionAccordion title="Timezone, Updates & Shutdown">
-          <TimezoneUpdatesShutdownSection />
+        <SectionAccordion title="Timezone">
+          <TimezoneForm />
+        </SectionAccordion>
+        <SectionAccordion title="Updates">
+          <UpdatesForm />
+        </SectionAccordion>
+        <SectionAccordion title="Shutdown">
+          <ShutdownForm />
         </SectionAccordion>
         <SectionAccordion title="Reporting">
-          <ReportingSection />
+          <ReportingForm />
         </SectionAccordion>
         <SectionAccordion title="User Data">
-          <UserDataSection />
+          <UserDataForm />
         </SectionAccordion>
-        <SectionAccordion title="Debconf & Z Devices">
-          <DebconfZdevsSection />
+        <SectionAccordion title="Debconf Selections">
+          <DebconfSelectionsForm />
+        </SectionAccordion>
+        <SectionAccordion title="Z Devices">
+          <ZDevsForm />
         </SectionAccordion>
       </TabPanel>
     </Box>

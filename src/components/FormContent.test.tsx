@@ -51,6 +51,16 @@ describe('FormContent', () => {
     expect(screen.getByText('Identity')).toBeTruthy()
   })
 
+  it('shows Configuration tab with zdevs-add-button when activeTab=5', () => {
+    renderFormContent(5)
+    expect(screen.getByTestId('zdevs-add-button')).toBeTruthy()
+  })
+
+  it('shows Configuration tab with debconf-selections-field when activeTab=5', () => {
+    renderFormContent(5)
+    expect(screen.getByTestId('debconf-selections-field')).toBeTruthy()
+  })
+
   it('has no axe-core critical violations', async () => {
     const { container } = renderFormContent(0)
     const results = await axe(container)
